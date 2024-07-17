@@ -1,11 +1,16 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request,url_for,redirect
 import random
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
-@app.route('/home')
+@app.route('/home', methods = ['GET', 'POST'])
 def home():
-    return render_template("home.html")
+    if request.method == 'GET':
+        return render_template("home.html")
+    else:
+        month = request.form['birthday']
+        return redirect(url_for('fortune',birthM=month ))
+
 
 fortune_list=["Great opportunities await you in the near future. Stay alert and be ready to seize them.",
 "A journey of a thousand miles begins with a single step. Take that first step with confidence.",
@@ -18,10 +23,15 @@ fortune_list=["Great opportunities await you in the near future. Stay alert and 
 "Trust your instincts in making decisions; they will lead you in the right direction.",
 "Generosity towards others will bring you inner peace and fulfillment."]
 
-@app.route('/furtune_telling')
-def furtune():
-    fortune = fortune_list[random.randint(0,9)]
-    return render_template("furtune.html", f = fortune)
+@app.route('/fortune_telling/<birthM>')
+def fortune(birthM):
+    
+    birthLength = len(birthM)
+    finalFortune = fortune_list[9]
+    if birthLength<10:
+        finalFortune = fortune_list[birthLength-1]
+    return render_template("fortune.html", fortune = finalFortune)
+
 
 
 
