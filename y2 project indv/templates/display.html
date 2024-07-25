@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Reviews</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f0f2f5;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			padding: 20px;
+			margin: 0;
+		}
+		.review {
+			background-color: white;
+			padding: 20px;
+			border-radius: 8px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			width: 100%;
+			max-width: 600px;
+			box-sizing: border-box;
+			margin-bottom: 20px;
+		}
+		h1 {
+			font-size: 24px;
+			color: #333;
+			margin: 0 0 10px;
+		}
+		h2 {
+			font-size: 20px;
+			color: #555;
+			margin: 0 0 10px;
+		}
+		h4 {
+			font-size: 16px;
+			color: #777;
+			margin: 0 0 10px;
+		}
+		hr {
+			border: none;
+			border-top: 1px solid #eee;
+			margin: 20px 0;
+		}
+	</style>
+</head>
+<body>
+	{% for review in reviews.values() %}
+		<div class="review">
+			<h1>Show: {{ review['name of the show'] }}</h1>
+			<h2>Description: {{ review['discreption:'] }}</h2>
+			<h2>Genre: {{ review['gener'] }}</h2>
+			<h4>Rating: {{ review['star'] }}</h4>
+		</div>
+	{% endfor %}
+</body>
+<script>
+	// Add any JavaScript here if needed
+</script>
+</html>
